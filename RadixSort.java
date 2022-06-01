@@ -3,28 +3,23 @@ package ca.karmalover.radixsort;
 import java.util.Arrays;
 
 public class RadixSort {
-    public static void main(String[] args) {
-        // input for numbers
-        int[] i = { 123, 4354, 28943, 29394, 3948549, 3948};
-        int size = i.length;
-
-        // sort the numbers
-        radixSort(i, size);
-
-        // print them
-        System.out.println(toString(i, size));
+    private final int[] args;
+    private final int size;
+    public RadixSort(int[] args) {
+        this.args = args;
+        this.size = args.length;
     }
 
-    public static void radixSort(int[] args, int size) {
-        int maxNum = getMaxNum(args, size);
+    public void radixSort() {
+        int maxNum = getMaxNum();
 
         for (int exp = 1; maxNum / exp > 0; exp *= 10) {
-            countSort(args, size, exp);
+            countSort(exp);
         }
     }
 
     // gets the biggest number in the list
-    public static int getMaxNum(int[] args, int size) {
+    private int getMaxNum() {
         int maxNum = args[0];
         for (int i = 0; i < size; i++) {
             if (args[i] > maxNum) {
@@ -34,7 +29,7 @@ public class RadixSort {
         return maxNum;
     }
 
-    public static void countSort(int[] args, int size, int exp) {
+    private void countSort(int exp) {
         int[] output = new int[size];
         int i;
         int[] count = new int[10];
@@ -55,7 +50,7 @@ public class RadixSort {
         }
     }
 
-    public static String toString(int[] args, int size) {
+    public String toString() {
         String str = "";
         for (int i = 0; i < size; i++) {
             str = String.format("%s%s ", str, args[i]);
