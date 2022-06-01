@@ -1,12 +1,19 @@
 package ca.karmalover.radixsort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class RadixSort {
     private final int[] args;
     private final int size;
-    public RadixSort(int[] args) {
-        this.args = args;
+    public 
+
+    public RadixSort(int listSize) {
+        Random random = new Random();
+        this.args = new int[listSize];
+        for (int i = 0; i < listSize; i++) {
+            args[i] =  (random.nextInt(998) + 1);
+        }
         this.size = args.length;
     }
 
@@ -48,6 +55,7 @@ public class RadixSort {
         for (i = 0; i < size; i++) {
             args[i] = output[i];
         }
+
     }
 
     public String toString() {
