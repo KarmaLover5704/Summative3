@@ -1,0 +1,60 @@
+package ca.karmalover.radixsort;
+
+import java.util.Arrays;
+
+public class RadixSort {
+    private final int[] args;
+    private final int size;
+    public RadixSort(int[] args) {
+        this.args = args;
+        this.size = args.length;
+    }
+
+    public void radixSort() {
+        int maxNum = getMaxNum();
+
+        for (int exp = 1; maxNum / exp > 0; exp *= 10) {
+            countSort(exp);
+        }
+    }
+
+    // gets the biggest number in the list
+    private int getMaxNum() {
+        int maxNum = args[0];
+        for (int i = 0; i < size; i++) {
+            if (args[i] > maxNum) {
+                maxNum = args[i];
+            }
+        }
+        return maxNum;
+    }
+
+    private void countSort(int exp) {
+        int[] output = new int[size];
+        int i;
+        int[] count = new int[10];
+        Arrays.fill(count, 0);
+
+        for (i = 0; i < size; i++) {
+            count[(args[i] / exp) % 10]++;
+        }
+        for (i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+        for (i = size - 1; i >= 0; i--) {
+            output[count[(args[i] / exp) % 10] - 1] = args[i];
+            count[(args[i] / exp) % 10]--;
+        }
+        for (i = 0; i < size; i++) {
+            args[i] = output[i];
+        }
+    }
+
+    public String toString() {
+        String str = "";
+        for (int i = 0; i < size; i++) {
+            str = String.format("%s%s ", str, args[i]);
+        }
+        return str;
+    }
+}
