@@ -10,7 +10,7 @@ public class input extends Actor
 {
     
     
-    
+    boolean isAsked = false;
   
     /**
      * Act - do whatever the rectangle wants to do. This method is called whenever
@@ -18,9 +18,24 @@ public class input extends Actor
      */
     public void act() 
     {
-    
-      String num = Greenfoot.ask("How many numbers do you want to generate? (5-20)");
+        
       
-      int number = Integer.parseInt(num);
+      int number = 1;
+      if(isAsked == false ){
+          String num = Greenfoot.ask("How many numbers do you want to generate? (5-20)");
+          number = Integer.parseInt(num);
+          
+          RadixSort radixSort = new RadixSort(number);
+      
+          radixSort.radixSort();
+          
+          getWorld().showText(radixSort.getStage(0), 250, 10);
+          isAsked = true;
+      }
+      
+      
+      
+      
+ 
     }    
 }
