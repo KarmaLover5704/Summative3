@@ -29,7 +29,13 @@ public class input extends Actor
       
           radixSort.radixSort();
           
-          getWorld().showText(radixSort.getStage(0), 250, 10);
+          getWorld().showText(radixSort.getStartingArgs(), 250, 10);
+          
+          
+          getWorld().showText(radixSort.getStage(0), 250, 35);
+          getWorld().showText(radixSort.getStage(1), 250, 60);
+          getWorld().showText(radixSort.getStage(2), 250, 85);
+          getWorld().showText(radixSort.toString(), 250, 110);
           isAsked = true;
       }
       

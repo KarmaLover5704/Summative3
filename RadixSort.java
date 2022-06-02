@@ -8,6 +8,7 @@ public class RadixSort {
     public static ArrayList<String> stages = new ArrayList<>();
     private final int[] args;
     private final int size;
+    private final String startingArgs;
 
     public RadixSort(int listSize) {
         Random random = new Random();
@@ -16,6 +17,7 @@ public class RadixSort {
             args[i] =  (random.nextInt(998) + 1);
         }
         this.size = args.length;
+        this.startingArgs = Arrays.toString(args);
     }
 
     public void radixSort() {
@@ -70,5 +72,10 @@ public class RadixSort {
 
     public String getStage(int stageNum) {
         return stages.get(stageNum);
+    }
+    
+   
+    public String getStartingArgs() {
+        return startingArgs;
     }
 }
