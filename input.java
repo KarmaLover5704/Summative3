@@ -17,6 +17,9 @@ public class input extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
+    public void pause(int delay){
+    
+    }
     public void printToScreen(String text,  int x, int y){
         GreenfootImage letters = new GreenfootImage(text, 25, Color.CYAN, new Color(0, 0, 0, 0));
         getWorld().getBackground().drawImage(letters, (getWorld().getWidth()-letters.getWidth())/2, y);
@@ -27,26 +30,28 @@ public class input extends Actor
     public void act() 
     {
         
-      int delay = 200;
+      int delay = 100;
       int number = 1;
       if(isAsked == false ){
           String num = Greenfoot.ask("How many numbers do you want to generate? (5-20)");
           number = Integer.parseInt(num);
           
           RadixSort radixSort = new RadixSort(number);
-      
+          int y = 40;
           radixSort.radixSort();
-          
           printToScreen("Original Array: " + radixSort.getStartingArgs(), 250, 10);
-          Greenfoot.delay(delay);
-          printToScreen("First Step: " + radixSort.getStage(0), 250, 35);
-          Greenfoot.delay(delay);
-          printToScreen("Second Step: " + radixSort.getStage(1), 250, 80);
-          Greenfoot.delay(delay);
-          printToScreen("Third Step: " + radixSort.getStage(2), 250, 110);
-          Greenfoot.delay(delay);
-          printToScreen("Sorted array: " + radixSort.toString(), 250, 140);
-          Greenfoot.delay(delay);
+          Greenfoot.delay(60);
+          for(int i = 0; i <  RadixSort.getNumStages(); i++){
+              printToScreen("Step Number " + i  + ": " + radixSort.getStage(i), 250, y);
+              y += 30;
+              Greenfoot.delay(60);
+          }
+          
+          
+          
+          
+          printToScreen("Sorted array: " + radixSort.getStage(RadixSort.getNumStages()-1), 250, 230);
+          
           isAsked = true;
       }
       
