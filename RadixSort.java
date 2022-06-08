@@ -14,7 +14,7 @@ public class RadixSort {
         Random random = new Random();
         this.args = new int[listSize];
         for (int i = 0; i < listSize; i++) {
-            args[i] =  (random.nextInt(100000) + 1);
+            args[i] =  (random.nextInt(1000000) + 1);
         }
         this.size = args.length;
         this.startingArgs = Arrays.toString(args);

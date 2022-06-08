@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class input extends Actor
+public class main extends Actor
 {
     
     
@@ -33,7 +33,7 @@ public class input extends Actor
       int delay = 100;
       int number = 1;
       if(isAsked == false ){
-          String num = Greenfoot.ask("How many numbers do you want to generate? (5-20)");
+          String num = Greenfoot.ask("How many numbers do you want to generate? (5-10)");
           number = Integer.parseInt(num);
           
           RadixSort radixSort = new RadixSort(number);
@@ -50,7 +50,7 @@ public class input extends Actor
           
           
           
-          printToScreen("Sorted array: " + radixSort.getStage(RadixSort.getNumStages()-1), 250, 230);
+          printToScreen("Sorted array: " + radixSort.getStage(RadixSort.getNumStages()-1), 250, y + 30);
           
           isAsked = true;
       }
